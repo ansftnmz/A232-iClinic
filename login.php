@@ -1,22 +1,25 @@
 <?php
-if (isset($_POST['email']) && isset($_POST['password'])) {
-    include 'dbconnect.php';
-    $email = $_POST['email'];
-    $password = sha1($_POST['password']);
-    $sqllogin = "SELECT * FROM `tbl_user` WHERE `user_email` = '$email' AND `user_pass` = '$password'";
-    $stmt = $conn->prepare($sqllogin);
-    $stmt->execute();
-    $number_of_rows = $stmt->fetchColumn();
-    if ($number_of_rows > 0) {
-        session_start();
-        $_SESSION["email"] = $email;
-        $_SESSION["password"] = $password;
-        echo "<script>alert('Login Success')</script>";
-        echo "<script>window.location.href = 'index.php'</script>";
-    }else{
-        echo "<script>alert('Login Failed')</script>";
-        echo "<script>window.location.href = 'login.php'</script>";
-    }
+	include 'dbconnect.php';
+	if (isset($_POST['email']) && isset($_POST['password'])) {
+		
+		$email = $_POST['email'];
+		$password = sha1($_POST['password']);
+		$sqllogin = "SELECT * FROM `tbl_user` WHERE `user_email` = '$email' AND `user_pass` = '$password'";
+		$stmt = $conn->prepare($sqllogin);
+		$stmt->execute();
+		$number_of_rows = $stmt->fetchColumn();
+		if ($number_of_rows > 0) {
+			session_start();
+			$_SESSION["email"] = $email;
+			$_SESSION["password"] = $password;
+
+			echo "<script>alert('Login Success')</script>";
+			echo "<script>window.location.href = 'index.php'</script>";
+		} 
+		else{
+			echo "<script>alert('Login Failed')</script>";
+			echo "<script>window.location.href = 'login.php'</script>";
+		}
 }
 ?>
 
@@ -41,10 +44,10 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title">Login</h4>
-							<form method="POST" class="my-login-validation" novalidate="">
+							<form method="POST" class="my-login-validation"  id="loginForm" >
 								<div class="form-group">
 									<label for="email">E-Mail Address</label>
-									<input id="email" type="email" class="form-control" name="email" value="" required autofocus>
+									<input id="email" type="email" class="form-control" name="email" placeholder=""  required>
 									<div class="invalid-feedback">
 										Email is invalid
 									</div>
@@ -56,7 +59,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 											Forgot Password?
 										</a>
 									</label>
-									<input id="password" type="password" class="form-control" name="password" required data-eye>
+									<input id="password" type="password" class="form-control" name="password" required data-eye required>
 								    <div class="invalid-feedback">
 								    	Password is required
 							    	</div>
@@ -75,13 +78,13 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 									</button>
 								</div>
 								<div class="mt-4 text-center">
-									Don't have an account? <a href="test.php">Create One</a>
+									Don't have an account? <a href="register.php">Create One</a>
 								</div>
 							</form>
 						</div>
 					</div>
 					<div class="footer">
-                    Copyright &copy; 2017 &mdash; iClinic Sdn. Bhd.
+                    Copyright &copy; 2024 &mdash; iClinic Sdn. Bhd.
 					</div>
 				</div>
 			</div>

@@ -12,8 +12,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Prepare and bind
     $sqlreguser = "INSERT INTO `tbl_user`(`user_name`, `user_email`, `user_pass`,`user_phone`, `user_address`) 
     VALUES ('$name','$email ','$password','$phoneno','$address')";
-
-    echo $sqlreguser;
+	$stmt = $conn->prepare($sqlreguser);
+    $stmt->execute();
+	if ($stmt == true) {
+        echo "<script>alert('Register Success')</script>";
+        echo "<script>window.location.href = 'login.php'</script>";
+    }else{
+        echo "<script>alert('Register Failed')</script>";
+        echo "<script>window.location.href = 'test.php'</script>";
+    }
 }
     
 ?>
@@ -37,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title">Register</h4>
-							<form method="POST" class="my-login-validation" novalidate="">
+							<form method="POST" class="my-login-validation" >
 								<div class="form-group">
 									<label for="name">Name</label>
 									<input id="name" type="text" class="form-control" name="name" required autofocus>
@@ -90,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						</div>
 					</div>
 					<div class="footer">
-						Copyright &copy; 2017 &mdash; iClinic Sdn. Bhd.
+						Copyright &copy; 2024 &mdash; iClinic Sdn. Bhd.
 					</div>
 				</div>
 			</div>
