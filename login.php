@@ -14,7 +14,7 @@
 			$_SESSION["password"] = $password;
 
 			echo "<script>alert('Login Success')</script>";
-			echo "<script>window.location.href = 'index.php'</script>";
+			echo "<script>window.location.href = 'homepage.php'</script>";
 		} 
 		else{
 			echo "<script>alert('Login Failed')</script>";
@@ -30,7 +30,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>Login - iClinic</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
 
 <body class="login-page">
